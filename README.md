@@ -74,9 +74,7 @@ __/memory/:slug - displays info for a particular memory.
 
 ## Site map
 
-(___TODO__: draw out a site map that shows how pages are related to each other_)
-
-Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia/commons/2/20/Sitemap_google.jpg), but you can create one without the screenshots, drop shadows, etc. ... just names of pages and where they flow to.
+![Site Map](documentation/SiteMap.png)
 
 ## User Stories or Use Cases
 
