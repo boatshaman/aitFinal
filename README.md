@@ -12,14 +12,11 @@ The map diary provides an easy way for users to organize their wonderful diary e
 
 ## Data Model
 
-(___TODO__: a description of your application's data and their relationships to each other_) 
+We will be keeping track of users, coordinates, and memories. 
 
-The application will store Users, Lists and Items
+Users will have a list (by reference) of coordinates they have visited.
+Coordinates will have a list (by refercence) of memories recoreded there. Because multiple users can record memories at the same location, the memory objects will need to include the unique identifier attributed to the user that created the memory. 
 
-* users can have multiple lists (via references)
-* each list can have multiple items (by embedding)
-
-(___TODO__: sample documents_)
 
 An Example User:
 
@@ -27,22 +24,25 @@ An Example User:
 {
   username: "shannonshopper",
   hash: // a password hash,
-  lists: // an array of references to List documents
+  coords: // an array of references to Coordinate documents
 }
 ```
-
-An Example List with Embedded Items:
+An Example Coordinate:
 
 ```javascript
 {
-  user: // a reference to a User object
-  name: "Breakfast foods",
-  items: [
-    { name: "pancakes", quantity: "9876", checked: false},
-    { name: "ramen", quantity: "2", checked: true},
-  ],
-  createdAt: // timestamp
+  lat: -10.04,
+  long: 43.13,
+  memories: // an array of references to Memory documents
 }
+```
+An Example Memory:
+
+```javascript
+{
+  text: "i love this place",
+  date: //time memory is created,
+  createdBy: // unique username of the creator of the memory
 ```
 
 
