@@ -14,7 +14,8 @@ const Coordinate = new mongoose.Schema({
 
 const Entry = new mongoose.Schema({
 	createdBy: {type: String, required:true},
-  	text: String,
+  	title: String,
+	text: String,
 	date: String
 });
 
