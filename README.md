@@ -6,7 +6,7 @@
 
 Diaries are old school. Pencil and paper with chronologically sorted events have little interest to our over stimulated 21st century brains. And what if you want to jump to a specific memory? I'm not sure about you but my diary doesn't have a table of contents...
 
-A solution to our problem lies in reinventing the diary from the ground up with: __Map Diary__
+A solution to our problem lies in reinventing the diary from the ground up with: __Map Diary__.
 The map diary provides an easy way for users to organize their wonderful diary exerpts by locations on a map. When wanting to look back at a single moment all one has to do is remember where it took place and sort through the memories they have recorded at those coordinates. 
 
 
