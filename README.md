@@ -53,19 +53,24 @@ An Example Memory:
 
 ## Wireframes
 
-(___TODO__: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc._)
 
-/list/create - page for creating a new shopping list
+__/login__ - page for logging into the site.
 
-![list create](documentation/list-create.png)
+![login](documentation/login.JPG)
 
-/list - page for showing all shopping lists
+__/map__ - page for viewing the map and coordinates with diary entries.
 
-![list](documentation/list.png)
+![Big Map](documentation/big_map.JPG)
 
-/list/slug - page for showing specific shopping list
+![Coordinates enum](documentation/coord_enum.JPG)
 
-![list](documentation/list-slug.png)
+__/add-memory & /edit-memory__ - page for adding new memory. User is only directed here after placing a new pin on the map and therefore don't need to specify the location on this form.
+
+![Add Memory](documentation/add_mem.JPG)
+
+__/memory/:slug - displays info for a particular memory.
+
+![View Memory](documentation/view_mem.JPG)
 
 ## Site map
 
@@ -79,7 +84,7 @@ Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia
 
 1. as non-registered user, I can register a new account with the site
 2. as a user, I can log in to the site
-3. as a user, I can create a new grocery list
+3. as a user, I can view the locations I've recorded memories at
 4. as a user, I can view all of the grocery lists I've created in a single list
 5. as a user, I can add items to an existing grocery list
 6. as a user, I can cross off items in an existing grocery list
