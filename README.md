@@ -40,6 +40,7 @@ An Example Memory:
 
 ```javascript
 {
+  title: "rainy shrine"
   text: "i love this place",
   date: //time memory is created,
   createdBy: // unique username of the creator of the memory
