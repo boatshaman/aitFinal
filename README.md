@@ -1,16 +1,13 @@
-The content below is an example project proposal / requirements document. Replace the text below the lines marked "__TODO__" with details specific to your project. Remove the "TODO" lines.
 
-(___TODO__: your project name_)
-
-# Shoppy Shoperson 
+# Map Diary 
 
 ## Overview
 
-(___TODO__: a brief one or two paragraph, high-level description of your project_)
 
-Remembering what to buy at the grocery store is waaaaay too difficult. Also, shopping for groceries when you're hungry leads to regrettable purchases. Sooo... that's where Shoppy Shoperson comes in!
+Diaries are old school. Pencil and paper with chronologically sorted events have little interest to our over stimulated 21st century brains. And what if you want to jump to a specific memory? I'm not sure about you but my diary doesn't have a table of contents...
 
-Shoppy Shoperson is a web app that will allow users to keep track of multiple grocery lists. Users can register and login. Once they're logged in, they can create or view their grocery list. For every list that they have, they can add items to the list or cross off items.
+A solution to our problem lies in reinventing the diary from the ground up with: __Map Diary__
+The map diary provides an easy way for users to organize their wonderful diary exerpts by locations on a map. When wanting to look back at a single moment all one has to do is remember where it took place and sort through the memories they have recorded at those coordinates. 
 
 
 ## Data Model
