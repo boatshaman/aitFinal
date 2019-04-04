@@ -47,9 +47,8 @@ An Example Memory:
 ```
 
 
-## [Link to Commented First Draft Schema](db.js) 
+## [First draft of db.js](src/db.js) 
 
-(___TODO__: create a first draft of your Schemas in db.js and link to it_)
 
 ## Wireframes
 
