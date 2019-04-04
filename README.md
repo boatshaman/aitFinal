@@ -62,9 +62,9 @@ __/map__ - page for viewing the map and coordinates with diary entries.
 
 ![Big Map](documentation/big_map.JPG)
 
-![Coordinates enum](documentation/coords_enum.JPG)
+![Coordinates enum](documentation/coord_enum.JPG)
 
-__/add-memory__ - page for adding new memory. User is only directed here after placing a new pin on the map and therefore don't need to specify the location on this form.
+__/add-memory & /edit-memory__ - page for adding new memory. User is only directed here after placing a new pin on the map and therefore don't need to specify the location on this form.
 
 ![Add Memory](documentation/add_mem.JPG)
 
