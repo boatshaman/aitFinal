@@ -53,19 +53,24 @@ An Example Memory:
 
 ## Wireframes
 
-(___TODO__: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc._)
 
-/list/create - page for creating a new shopping list
+__/login__ - page for logging into the site.
 
-![list create](documentation/list-create.png)
+![login](documentation/login.JPG)
 
-/list - page for showing all shopping lists
+__/map__ - page for viewing the map and coordinates with diary entries.
 
-![list](documentation/list.png)
+![Big Map](documentation/big_map.JPG)
 
-/list/slug - page for showing specific shopping list
+![Coordinates enum](documentation/coords_enum.JPG)
 
-![list](documentation/list-slug.png)
+__/add-memory__ - page for adding new memory. User is only directed here after placing a new pin on the map and therefore don't need to specify the location on this form.
+
+![Add Memory](documentation/add_mem.JPG)
+
+__/memory/:uniqueID__ - displays info for a particular memory.
+
+![View Memory](documentation/view_mem.JPG)
 
 ## Site map
 
