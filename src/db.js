@@ -1,16 +1,5 @@
 // db.js
-const mongoose = require('mongoose')
-const URLSlugs = require('mongoose-url-slugs');
-
-
-const User = new mongoose.Schema({
-  username: {type: String, required:true},
-  coords: [Coordinate]
-});
-
-const Coordinate = new mongoose.Schema({
-	memories: [Entry]
-});
+const mongoose = require('mongoose');
 
 const Entry = new mongoose.Schema({
 	createdBy: {type: String, required:true},
@@ -18,6 +7,19 @@ const Entry = new mongoose.Schema({
 	text: String,
 	date: String
 });
+
+const Coordinate = new mongoose.Schema({
+	memories: [Entry]
+});
+
+const User = new mongoose.Schema({
+  username: {type: String, required:true},
+  coords: [Coordinate]
+});
+
+
+
+
 
 let dbconf;
 if (process.env.NODE_ENV === 'PRODUCTION') {
