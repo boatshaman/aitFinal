@@ -1,6 +1,7 @@
 // db.js
 const mongoose = require('mongoose');
 
+
 const Entry = new mongoose.Schema({
 	createdBy: {type: String, required:true},
   	title: String,

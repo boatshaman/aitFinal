@@ -13,8 +13,8 @@ app.use(express.static('public'));
 
 
 app.get('/', (req, res) => {
-console.log("cool a connection!");
-res.send("Hello!").end();
+
+res.render("main", {});
 });
 
 
