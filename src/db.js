@@ -3,13 +3,14 @@ const mongoose = require('mongoose');
 
 
 const Entry = new mongoose.Schema({
-	createdBy: {type: String, required:true},
+	// createdBy: {type: String, required:true},
   	title: String,
 	text: String,
 	date: String
 });
 
 const Coordinate = new mongoose.Schema({
+  latlng: String,
 	memories: [Entry]
 });
 
