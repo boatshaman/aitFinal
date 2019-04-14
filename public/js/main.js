@@ -20,7 +20,7 @@ function setCoordWithLatLng(latlng){
 }
 
 function setCoordinate(){
-  setCoordWithLatLang(tempMarker.cords);
+  setCoordWithLatLng(tempMarker.cords);
   mymap.removeLayer(tempMarker.marker);
 
 
