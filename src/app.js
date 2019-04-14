@@ -9,6 +9,7 @@ const Coordinate = mongoose.model('Coordinate');
 
 app.set('view engine', 'hbs');
 app.set('view options', { layout: 'layout.hbs' });
+app.set('views', __dirname + '/../views/');
 app.use(express.urlencoded({extended:false}));
 app.use(require("body-parser").json());
 app.use(express.static('public'));
