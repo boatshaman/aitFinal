@@ -1,2 +1,7 @@
 
 #mymap { height: 300px; width:80% }
+
+
+hidden {
+  visibility: hidden;
+}

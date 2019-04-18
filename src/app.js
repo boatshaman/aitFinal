@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const sanitize = require('mongo-sanitize');
 const session = require('express-session');
 const Coordinate = mongoose.model('Coordinate');
+const Entry = mongoose.model('Entry');
 const cookieParser = require('cookie-parser')
 
 
@@ -34,6 +35,21 @@ app.get('/user-coordinates', (req, res) => {
    const cook = req.cookies['db.identity'];
   Coordinate.find({cookie:cook}, function(err, coords, count) {
     res.send(JSON.stringify(coords));
+  });
+
+
+});
+
+
+app.get('/mem/:latlng/:memid', (req, res) => {
+  const cook = req.cookies['db.identity'];
+  Coordinate.findOne({cookie:cook, latlng:req.params.latlng}, function(err, coord, count) {
+    coord.memories.forEach((mem) => {
+      if(mem._id == req.params.memid){
+        res.send(JSON.stringify(mem));
+      }
+    });
+    // res.send(JSON.stringify(coord));
   });
 
 

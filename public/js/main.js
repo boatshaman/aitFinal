@@ -29,7 +29,50 @@ function delCoord(latlng){
 
 function getEntry(latlng, entry_id){
 
-  console.log("nice!")
+  const	url = location.href + "mem/" + latlng +"/"+entry_id;
+  fetch(url).then(function(response) {
+    // check for server err?
+    return response.json();
+  }).then(function(myJson) {
+    viewMemory(myJson, latlng);
+  });
+}
+
+function viewMemory(mem, latlng){
+  console.log(mem);
+  const main = document.querySelector("main");
+  while(main.childElementCount > 0){main.removeChild(main.lastChild);}
+  const h3 = document.createElement("h3");
+  h3.setAttribute("id", "mem-title");
+  const h6 = document.createElement("h6");
+  h6.setAttribute("id", "mem-date");
+  const p = document.createElement("p");
+  p.setAttribute("id", "mem-text");
+  const b = document.createElement("button");
+  b.setAttribute("id", "editMem-btn");
+  b.onclick = editRedirect;
+  const hidden = document.createElement("hidden");
+  hidden.setAttribute("id", "hide-mem-info");
+// javascript:window.location.href='/add-memory/${encodeURI(ll)}'
+
+  h3.innerText = mem.title;
+  h6.innerText = mem.date;
+  p.innerText = mem.text;
+  b.innerText = "edit";
+  hidden.innerText = `/edit-memory/${encodeURI(latlng)}/${mem._id}`
+  main.appendChild(h3);
+  main.appendChild(h6);
+  main.appendChild(p);
+  main.appendChild(b);
+  main.appendChild(hidden);
+
+}
+
+function editRedirect(){
+  const info = document.getElementById("hide-mem-info");
+
+  window.location.href = info.textContent;
+
 }
 
 function setCoordWithLatLng(latlng){
@@ -44,7 +87,7 @@ function setCoordWithLatLng(latlng){
 // <button onClick="javascript:window.location.href='/secure/edit.aspx?id=671'">Edit</button>
   const newCord = L.marker(latlng, {icon}).bindPopup(`<button onclick="javascript:window.location.href='/add-memory/${encodeURI(ll)}'">Add Memory</button><button onclick='delCoord(${ll})'>Delete Location</button>`).on("click", setMark).addTo(mymap);
 }
-function setCoordWithCoord(coord){
+function setCoordWithCoord(coord){ //function for creating map coordinates + corresponding memories with Coordinate object from mongoose
   const ll = coord.latlng;
   const icon = L.icon({
     iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
@@ -53,10 +96,12 @@ function setCoordWithCoord(coord){
     iconAnchor:   [12, 41], // point of the icon which will correspond to marker's location
     popupAnchor:  [1, -34] // point from which the popup should open relative to the iconAnchor
 });
-// <button onClick="javascript:window.location.href='/secure/edit.aspx?id=671'">Edit</button>
+
 let popup = `<button onclick="javascript:window.location.href='/add-memory/${encodeURI(ll)}'">Add Memory</button><button onclick='delCoord(${ll})'>Delete Location</button><br>`
 coord.memories.forEach((mem)=>{
-  popup += `<p>${mem.date} <b>${mem.title}</b> <button onclick='getEntry(${ll}, ${mem._id})'>view</button></p><br>`;
+  oc = `'getEntry(${JSON.stringify(ll)}, "${mem._id}")'`;
+  console.log("!!!", oc);
+  popup += `<p>${mem.date} <b>${mem.title}</b> <button onclick=${oc} >view</button></p>`;
 });
   const newCord = L.marker(JSON.parse(ll), {icon}).bindPopup(popup).on("click", setMark).addTo(mymap);
 
@@ -99,6 +144,7 @@ marker.addTo(mymap);
 function loadStoredUserCoordinates(){
 	const	url = location.href + "user-coordinates";
   fetch(url).then(function(response) {
+    // check for server err?
     return response.json();
   }).then(function(myJson) {
     myJson.forEach((coord) => {
@@ -109,12 +155,12 @@ function loadStoredUserCoordinates(){
   });
 }
 
-function addStoredUserCoordinates(coords){
-  coords.forEach((coord) => {
-    setCoordWithLatLng(JSON.parse(coord.latlng));
-  });
-
-}
+// function addStoredUserCoordinates(coords){
+//   coords.forEach((coord) => {
+//     setCoordWithLatLng(JSON.parse(coord.latlng));
+//   });
+//
+// }
 
 
 
