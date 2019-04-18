@@ -11,13 +11,14 @@ const Entry = new mongoose.Schema({
 
 const Coordinate = new mongoose.Schema({
   latlng: String,
+  cookie: String,
 	memories: [Entry]
 });
 
-const User = new mongoose.Schema({
-  username: {type: String, required:true},
-  coords: [Coordinate]
-});
+// const User = new mongoose.Schema({
+//   username: {type: String, required:true},
+//   coords: [Coordinate]
+// });
 
 
 
@@ -38,7 +39,7 @@ if (process.env.NODE_ENV === 'PRODUCTION') {
  dbconf = 'mongodb://localhost/mapdiary';
 }
 
-mongoose.model('User', User);
+// mongoose.model('User', User);
 mongoose.model('Coordinate', Coordinate);
 mongoose.model('Entry', Entry);
 mongoose.connect(dbconf);

@@ -6,13 +6,22 @@ const mongoose = require('mongoose');
 const sanitize = require('mongo-sanitize');
 const session = require('express-session');
 const Coordinate = mongoose.model('Coordinate');
+const cookieParser = require('cookie-parser')
 
+
+app.use(cookieParser());
 app.set('view engine', 'hbs');
 app.set('view options', { layout: 'layout.hbs' });
 app.set('views', __dirname + '/../views/');
 app.use(express.urlencoded({extended:false}));
 app.use(require("body-parser").json());
 app.use(express.static('public'));
+app.use(function(req, res, next){
+  if(!req.cookies['db.identity']){
+    res.set('Set-Cookie', 'db.identity='+Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15));
+  }
+      next();
+  });
 
 
 app.get('/', (req, res) => {
@@ -22,8 +31,8 @@ res.render("main", {});
 
 
 app.get('/user-coordinates', (req, res) => {
-
-  Coordinate.find(function(err, coords, count) {
+   const cook = req.cookies['db.identity'];
+  Coordinate.find({cookie:cook}, function(err, coords, count) {
     res.send(JSON.stringify(coords));
   });
 
@@ -31,7 +40,8 @@ app.get('/user-coordinates', (req, res) => {
 });
 
 app.post('/add-coordinate', (req, res) => {
-  const newObj = {};
+  const cook = req.cookies['db.identity'];
+  const newObj = {cookie:cook};
   Object.keys(req.body).forEach((key) => {
     newObj[key] = sanitize(req.body[key])
   });
@@ -44,6 +54,48 @@ app.post('/add-coordinate', (req, res) => {
   }});
 
 });
+
+
+app.post('/delete-coordinate', (req, res) => {
+  const cook = req.cookies['db.identity'];
+  const newObj = {cookie:cook};
+  Object.keys(req.body).forEach((key) => {
+    newObj[key] = sanitize(req.body[key])
+  });
+  console.log(newObj);
+  Coordinate.deleteOne(newObj, function(err){
+    if(err){
+      console.log("error deleting");
+      res.render("main", {error:"Error occured while deleting..."});
+    }else{
+      res.redirect('/');
+    }
+
+  });
+
+});
+
+app.get("/add-memory/:slug", (req, res) => {
+  // console.log(req.params.slug);
+  res.render("addMem", {latlng:req.params.slug});
+});
+
+app.post("/add-memory/:slug", (req, res) => {
+  const latlng = req.params.slug;
+  const cook = req.cookies['db.identity'];
+  const query_obj = {latlng, cookie:cook};
+  console.log(req.body);
+
+  const newObj = {};
+  Object.keys(req.body).forEach((key) => {
+    newObj[key] = sanitize(req.body[key])
+  });
+  Coordinate.findOneAndUpdate({latlng, cookie:cook}, {$push: {memories: newObj}}, function(err, coord, count) {
+    if(err){console.log("error adding memory");}
+    res.redirect('/');
+});
+});
+
 
 
 const port = process.env.PORT || 3000;

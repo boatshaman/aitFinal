@@ -1,0 +1,13 @@
+<h3>Add New Memory for: {{latlng}}<h3>
+
+  <form id="add_mem" action="/add-memory/{{latlng}}" method="POST">
+    <label>Title</label>
+   <input type="text" name="title"></input><br>
+   <label>Date</label>
+   <input type="date" name="date"></input><br>
+   <label>Content</label>
+   <input type="text" name="text"></input><br>
+
+   <button type="submit" form="add_mem">Add!</button>
+
+  </form>
