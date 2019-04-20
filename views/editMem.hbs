@@ -1,0 +1,15 @@
+<h3>Edit Memory<h3>
+
+  <form id="edit_mem" action="/edit-memory/{{latlng}}/{{mem._id}}" method="POST">
+    <label>Title</label>
+   <input type="text" name="title" value='{{mem.title}}'></input><br>
+   <label>Date</label>
+   <input type="date" name="date" value='{{mem.date}}'></input><br>
+   <label>Content</label>
+   <input type="text" name="text" value='{{mem.text}}'></input><br>
+
+   <button type="submit" form="edit_mem">Edit!</button>
+
+  </form>
+
+  <hidden id="stored-ll">{{latlng}}</hidden>

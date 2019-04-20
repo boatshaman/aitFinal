@@ -70,7 +70,6 @@ function viewMemory(mem, latlng){
 
 function editRedirect(){
   const info = document.getElementById("hide-mem-info");
-
   window.location.href = info.textContent;
 
 }

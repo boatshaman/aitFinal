@@ -55,6 +55,49 @@ app.get('/mem/:latlng/:memid', (req, res) => {
 
 });
 
+app.get('/edit-memory/:latlng/:memid', (req, res) => {
+  const cook = req.cookies['db.identity'];
+  Coordinate.findOne({cookie:cook, latlng:req.params.latlng}, function(err, coord, count) {
+    coord.memories.forEach((mem) => {
+      if(mem._id == req.params.memid){
+        res.render("editMem", {mem, latlng:req.params.latlng});
+      }
+    });
+    // res.send(JSON.stringify(coord));
+  });
+});
+  app.post('/edit-memory/:latlng/:memid', (req, res) => {
+    const cook = req.cookies['db.identity'];
+    Coordinate.findOne({latlng: req.params.latlng, cookie:cook }, function(err, coord) {
+      const mem = coord.memories.id(req.params.memid);
+      console.log("!!!",mem);
+      mem.set(req.body);
+      coord.save().then(function(saved){
+        res.redirect("/");
+        // res.send("Success");
+        console.log("success");
+      }).catch(function(err){
+        res.status(500).send(err);
+      });
+      // res.redirect("/")
+    
+
+    });
+    // BlogPost.findById(req.params.postId, function(err, post) {
+    //   var subDoc = post.comments.id(req.params.commentId);
+    //   subDoc.set(req.body);
+    //
+    //   // Using a promise rather than a callback
+    //   post.save().then(function(savedPost) {
+    //     res.send(savedPost);
+    //   }).catch(function(err) {
+    //     res.status(500).send(err);
+    //   });
+    // });
+
+
+});
+
 app.post('/add-coordinate', (req, res) => {
   const cook = req.cookies['db.identity'];
   const newObj = {cookie:cook};
@@ -110,6 +153,9 @@ app.post("/add-memory/:slug", (req, res) => {
     if(err){console.log("error adding memory");}
     res.redirect('/');
 });
+
+
+
 });
 
 
