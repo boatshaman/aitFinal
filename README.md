@@ -14,23 +14,17 @@ The map diary provides an easy way for users to organize their wonderful diary e
 
 We will be keeping track of users, coordinates, and memories. 
 
-Users will have a list (by reference) of coordinates they have visited.
+Users will be refrenced by cookie.
 Coordinates will have a list (by refercence) of memories recoreded there. Because multiple users can record memories at the same location, the memory objects will need to include the unique identifier attributed to the user that created the memory. 
 
 
-An Example User:
 
-```javascript
-{
-  username: "shannonshopper",
-  hash: // a password hash,
-  coords: // an array of references to Coordinate documents
-}
 ```
 An Example Coordinate:
 
 ```javascript
 {
+  cookie: 12IUW10920NNU,
   lat: -10.04,
   long: 43.13,
   memories: // an array of references to Memory documents
@@ -48,7 +42,7 @@ An Example Memory:
 ```
 
 
-## [First draft of db.js](src/db.js) 
+## [db.js](src/db.js) 
 
 
 ## Wireframes
