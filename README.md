@@ -19,7 +19,7 @@ Coordinates will have a list (by refercence) of memories recoreded there. Becaus
 
 
 
-```
+
 An Example Coordinate:
 
 ```javascript
