@@ -57,12 +57,16 @@ app.get('/mem/:latlng/:memid', (req, res) => {
 
 app.get('/edit-memory/:latlng/:memid', (req, res) => {
   const cook = req.cookies['db.identity'];
+
   Coordinate.findOne({cookie:cook, latlng:req.params.latlng}, function(err, coord, count) {
+    console.log(coord)
     coord.memories.forEach((mem) => {
       if(mem._id == req.params.memid){
+        console.log("got here!!! : ", mem)
         res.render("editMem", {mem, latlng:req.params.latlng});
       }
     });
+    
     // res.send(JSON.stringify(coord));
   });
 });
@@ -80,7 +84,7 @@ app.get('/edit-memory/:latlng/:memid', (req, res) => {
         res.status(500).send(err);
       });
       // res.redirect("/")
-    
+
 
     });
     // BlogPost.findById(req.params.postId, function(err, post) {
