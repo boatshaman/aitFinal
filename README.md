@@ -25,8 +25,7 @@ An Example Coordinate:
 ```javascript
 {
   cookie: 12IUW10920NNU,
-  lat: -10.04,
-  long: 43.13,
+  latlng: [-10.04,43.13],
   memories: // an array of references to Memory documents
 }
 ```
@@ -47,10 +46,6 @@ An Example Memory:
 ## Wireframes
 
 
-__/login__ - page for logging into the site.
-
-![login](documentation/login.JPG)
-
 __/map__ - page for viewing the map and coordinates with diary entries.
 
 ![Big Map](documentation/big_map.JPG)
@@ -61,9 +56,6 @@ __/add-memory & /edit-memory__ - page for adding new memory. User is only direct
 
 ![Add Memory](documentation/add_mem.JPG)
 
-__/memory/:slug - displays info for a particular memory.
-
-![View Memory](documentation/view_mem.JPG)
 
 ## Site map
 
@@ -85,11 +77,10 @@ __/memory/:slug - displays info for a particular memory.
     * https://leafletjs.com/
     * Will incorporate different plugins
     * Allow drag and drop
-    * Geofencing
-    * Current location
-* (3 points) AJAX DOM Controlled Pop-up
-    * Want to fetch entry list on click of coordinates
-    * This is better for memory usage and scalability
+    
+* (3 points) Reverse Geocoding
+    * Get closest street address for Lat and Long
+    * https://geoservices.tamu.edu/Services/ReverseGeocoding/WebService/v04_01/HTTP.aspx
 
 
 8 points total out of 8 required points
