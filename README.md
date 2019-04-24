@@ -26,7 +26,8 @@ An Example Coordinate:
 {
   cookie: 12IUW10920NNU,
   latlng: [-10.04,43.13],
-  memories: // an array of references to Memory documents
+  memories: // an array of references to Memory documents,
+  address: '132 Thompson Street'
 }
 ```
 An Example Memory:
@@ -46,13 +47,13 @@ An Example Memory:
 ## Wireframes
 
 
-__/map__ - page for viewing the map and coordinates with diary entries.
+__/__ - page for viewing the map and coordinates with diary entries.
 
 ![Big Map](documentation/big_map.JPG)
 
 ![Coordinates enum](documentation/coord_enum.JPG)
 
-__/add-memory & /edit-memory__ - page for adding new memory. User is only directed here after placing a new pin on the map and therefore don't need to specify the location on this form.
+__/add-memory/:latlng & /edit-memory/:latlng__ - page for adding new memory. User is only directed here after placing a new pin on the map and therefore don't need to specify the location on this form. The latitude and longitude are present in the url. 
 
 ![Add Memory](documentation/add_mem.JPG)
 
@@ -72,15 +73,20 @@ __/add-memory & /edit-memory__ - page for adding new memory. User is only direct
 ## Research Topics
 
 
-* (5 points) Map API
+* (4 points) Map API - Client Side
     * I'll be using leaflet to incorporate map functionality
     * https://leafletjs.com/
     * Will incorporate different plugins
     * Allow drag and drop
     
-* (3 points) Reverse Geocoding
+* (2 points) Reverse Geocoding
     * Get closest street address for Lat and Long
     * https://geoservices.tamu.edu/Services/ReverseGeocoding/WebService/v04_01/HTTP.aspx
+
+* (2 points) Https Api - Server Side
+    * Allows us to make https requests and observe the response
+    * Using this for the Reverse Geocoding api call
+    * https://nodejs.org/api/https.html
 
 
 8 points total out of 8 required points
