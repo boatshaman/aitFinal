@@ -81,7 +81,7 @@ __/add-memory/:latlng & /edit-memory/:latlng__ - page for adding new memory. Use
     
 * (2 points) Reverse Geocoding
     * Get closest street address for Lat and Long
-    * https://geoservices.tamu.edu/Services/ReverseGeocoding/WebService/v04_01/HTTP.aspx
+    * https://developer.here.com/
 
 * (2 points) Https Api - Server Side
     * Allows us to make https requests and observe the response
