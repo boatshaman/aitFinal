@@ -7,7 +7,9 @@ const sanitize = require('mongo-sanitize');
 const session = require('express-session');
 const Coordinate = mongoose.model('Coordinate');
 const Entry = mongoose.model('Entry');
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
+const batch = require('./batch.js');
+const apiCalls = new batch.apiCallbacks(Coordinate);
 
 
 app.use(cookieParser());
@@ -23,6 +25,13 @@ app.use(function(req, res, next){
   }
       next();
   });
+
+app.use(function(req, res, next){
+  apiCalls.checkCalls();
+  next();
+});
+
+
 
 
 app.get('/', (req, res) => {
@@ -74,12 +83,11 @@ app.get('/edit-memory/:latlng/:memid', (req, res) => {
     const cook = req.cookies['db.identity'];
     Coordinate.findOne({latlng: req.params.latlng, cookie:cook }, function(err, coord) {
       const mem = coord.memories.id(req.params.memid);
-      console.log("!!!",mem);
       mem.set(req.body);
       coord.save().then(function(saved){
         res.redirect("/");
         // res.send("Success");
-        console.log("success");
+        // console.log("success");
       }).catch(function(err){
         res.status(500).send(err);
       });
@@ -87,34 +95,30 @@ app.get('/edit-memory/:latlng/:memid', (req, res) => {
 
 
     });
-    // BlogPost.findById(req.params.postId, function(err, post) {
-    //   var subDoc = post.comments.id(req.params.commentId);
-    //   subDoc.set(req.body);
-    //
-    //   // Using a promise rather than a callback
-    //   post.save().then(function(savedPost) {
-    //     res.send(savedPost);
-    //   }).catch(function(err) {
-    //     res.status(500).send(err);
-    //   });
-    // });
-
 
 });
 
 app.post('/add-coordinate', (req, res) => {
+
   const cook = req.cookies['db.identity'];
   const newObj = {cookie:cook};
   Object.keys(req.body).forEach((key) => {
     newObj[key] = sanitize(req.body[key])
   });
-  console.log(newObj);
-  new Coordinate(newObj).save(function(err, coord, count){
-    if(err){
-      res.render("main", {error:"Error occured..."});
-  }else{
-		res.redirect('/');
-  }});
+    //wrappedRevGeocode(req.body.latlng);
+    const apiCall = new batch.apiCall(req.body.latlng, cook);
+    apiCall.run();
+    apiCalls.addCall(apiCall);
+    // console.log(newObj);
+
+    new Coordinate(newObj).save(function(err, coord, count){
+      if(err){
+        console.log("error creating coordinate");
+    }else{
+      console.log("success creating coordinate");
+    }});
+
+
 
 });
 
@@ -140,14 +144,22 @@ app.post('/delete-coordinate', (req, res) => {
 
 app.get("/add-memory/:slug", (req, res) => {
   // console.log(req.params.slug);
-  res.render("addMem", {latlng:req.params.slug});
+    const cook = req.cookies['db.identity'];
+  Coordinate.findOne({latlng: req.params.slug, cookie:cook }, function(err, coord) {
+    if(err){res.status(500).send();}
+    res.render('addMem', {coord})
+
+
+
+  });
 });
+
 
 app.post("/add-memory/:slug", (req, res) => {
   const latlng = req.params.slug;
   const cook = req.cookies['db.identity'];
   const query_obj = {latlng, cookie:cook};
-  console.log(req.body);
+  // console.log(req.body);
 
   const newObj = {};
   Object.keys(req.body).forEach((key) => {
@@ -161,6 +173,7 @@ app.post("/add-memory/:slug", (req, res) => {
 
 
 });
+
 
 
 

@@ -13,6 +13,8 @@ console.log("cool");
 }
 
 function delCoord(latlng){
+  const main = document.querySelector("main");
+  while(main.childElementCount > 0){main.removeChild(main.lastChild);}
   const	url = location.href + "delete-coordinate";
 
   fetch(url, {
@@ -96,7 +98,7 @@ function setCoordWithCoord(coord){ //function for creating map coordinates + cor
     popupAnchor:  [1, -34] // point from which the popup should open relative to the iconAnchor
 });
 
-let popup = `<button onclick="javascript:window.location.href='/add-memory/${encodeURI(ll)}'">Add Memory</button><button onclick='delCoord(${ll})'>Delete Location</button><br>`
+let popup = `<h3>${coord.address}<h3><button onclick="javascript:window.location.href='/add-memory/${encodeURI(ll)}'">Add Memory</button><button onclick='delCoord(${ll})'>Delete Location</button><br>`
 coord.memories.forEach((mem)=>{
   oc = `'getEntry(${JSON.stringify(ll)}, "${mem._id}")'`;
   console.log("!!!", oc);

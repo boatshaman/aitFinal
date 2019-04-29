@@ -1,6 +1,6 @@
-<h3>Add New Memory for: {{latlng}}<h3>
+<h3>Add New Memory for: {{coord.address}}<h3>
 
-  <form id="add_mem" action="/add-memory/{{latlng}}" method="POST">
+  <form id="add_mem" action="/add-memory/{{coord.latlng}}" method="POST">
     <label>Title</label>
    <input type="text" name="title"></input><br>
    <label>Date</label>

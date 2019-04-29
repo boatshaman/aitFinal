@@ -12,13 +12,11 @@ const Entry = new mongoose.Schema({
 const Coordinate = new mongoose.Schema({
   latlng: String,
   cookie: String,
-	memories: [Entry]
+	memories: [Entry],
+  address: String
 });
 
-// const User = new mongoose.Schema({
-//   username: {type: String, required:true},
-//   coords: [Coordinate]
-// });
+
 
 
 
